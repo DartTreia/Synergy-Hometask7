@@ -64,7 +64,7 @@ public class HomeWork7 {
     public static Integer methodFive(List<String> names) {
         ArrayList<String> newList1 = new ArrayList<>();
         names.stream().map(n-> new StringBuilder(n)).forEach(n->newList1.add(String.valueOf(n.replace(n.indexOf(" "),n.length(),""))));
-        int count =(int) newList1.stream().filter(n->n.length()>6).count();
+        int count =(int) newList1.stream().distinct().filter(n->n.length()>6).count();
         return count;
     }
 
@@ -73,7 +73,9 @@ public class HomeWork7 {
      */
     public static Integer methodSix(List<String> names) {
         LinkedList<String> newList1 = new LinkedList<>();
-        int count = (int)names.stream().filter(n->(n.substring(0,n.indexOf(" ")).length()>5 && n.substring(n.indexOf(" ")+1,n.length()).length()>5)).count();
+        names.stream().map(n-> new StringBuilder(n)).forEach(n->newList1.add(String.valueOf(n.replace(0,n.indexOf(" ")+1,""))));
+        names.stream().map(n-> new StringBuilder(n)).forEach(n->newList1.add(String.valueOf(n.replace(n.indexOf(" "),n.length(),""))));
+        int count =(int) newList1.stream().distinct().filter(n->n.length()>5).count();
         return count;
     }
 
